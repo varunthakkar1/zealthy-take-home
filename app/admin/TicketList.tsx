@@ -18,6 +18,7 @@ const TicketList = ({ tickets }: { tickets: Array<Ticket> }) => {
                         <TicketSummary ticket={t} isSelected={selectedTicket ? t.ticketId === selectedTicket?.ticketId : false} />
                     </div>
                 })}
+                {ticketData.length === 0 && <div className="text-xl my-[10px] px-[20px]">No tickets found.</div>}
             </div>
         </div>
 

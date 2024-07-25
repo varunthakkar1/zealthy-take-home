@@ -57,14 +57,14 @@ const TicketDetails = ({ ticket, setTicketData, ticketData }:
                             Ticket #{ticket.ticketId} from {ticket.name}
                         </div>
                         <div className="w-full flex justify-center"><StatusBadge status={ticket.status} /></div>
-                        <div className="py-[10px] text-lg max-w-full p-[10px] flex justify-center break-words text-wrap"
+                        <div className="p-[20px] text-lg max-w-full flex justify-center break-words text-wrap"
                             style={{ overflowY: 'auto', overflowX: 'clip' }}>{ticket.description}</div>
                         <button onClick={() => setPage('updateStatus')}
-                            className="border-blue-200 border-[1px] w-[full] text-nowrap flex justify-center px-[10px] py-[5px] rounded mx-[10px] mb-[10px]">
+                            className="border-blue-200 border-[1px] text-nowrap flex justify-center px-[10px] py-[5px] rounded-lg mx-[10px] mb-[10px]">
                             Update Status
                         </button>
                         <button onClick={() => setPage('sendResponse')}
-                            className="bg-blue-200 w-[full] flex justify-center text-nowrap px-[10px] py-[5px] rounded mx-[10px]">Send Response</button>
+                            className="bg-blue-200 flex justify-center text-nowrap px-[10px] py-[5px] rounded-lg mx-[10px]">Send Response</button>
                     </div>
                 )
                 break
@@ -74,7 +74,7 @@ const TicketDetails = ({ ticket, setTicketData, ticketData }:
                         <div className="w-full text-xl font-bold flex justify-center">
                             Ticket #{ticket.ticketId} New Status
                         </div>
-                        <div className="w-full flex flex-col py-[10px]">
+                        <div className="w-full flex flex-col p-[20px]">
                             <div className="w-full flex justify-center py-[5px]" style={{
                                 backgroundColor: ticketStatus === 'new' ? 'rgba(212, 212, 212, 0.8)' : '#FFF',
                                 cursor: ticketStatus === 'new' ? 'not-allowed' : 'pointer'
@@ -90,11 +90,11 @@ const TicketDetails = ({ ticket, setTicketData, ticketData }:
                         </div>
 
                         <button onClick={() => setPage('details')}
-                            className="border-blue-200 border-[1px] w-[full] text-nowrap flex justify-center px-[10px] py-[5px] rounded mx-[10px] mb-[10px]">
+                            className="border-blue-200 border-[1px] w-[full] text-nowrap flex justify-center px-[10px] py-[5px] rounded-lg mx-[10px] mb-[10px]">
                             Cancel
                         </button>
                         <button onClick={handleSaveStatus}
-                            className="bg-blue-200 w-[full] flex justify-center text-nowrap px-[10px] py-[5px] rounded mx-[10px]">Save</button>
+                            className="bg-blue-200 w-[full] flex justify-center text-nowrap px-[10px] py-[5px] rounded-lg mx-[10px]">Save</button>
                     </div>
                 )
                 break
@@ -111,11 +111,11 @@ const TicketDetails = ({ ticket, setTicketData, ticketData }:
                         </div>
 
                         <button onClick={() => setPage('details')}
-                            className="border-blue-200 border-[1px] w-[full] text-nowrap flex justify-center px-[10px] py-[5px] rounded mx-[10px] mb-[10px]">
+                            className="border-blue-200 border-[1px] w-[full] text-nowrap flex justify-center px-[10px] py-[5px] rounded-lg mx-[10px] mb-[10px]">
                             Cancel
                         </button>
                         <button onClick={handleSendResponse}
-                            className="bg-blue-200 w-[full] flex justify-center text-nowrap px-[10px] py-[5px] rounded mx-[10px]">Send</button>
+                            className="bg-blue-200 w-[full] flex justify-center text-nowrap px-[10px] py-[5px] rounded-lg mx-[10px]">Send</button>
                     </div>
                 )
                 break
