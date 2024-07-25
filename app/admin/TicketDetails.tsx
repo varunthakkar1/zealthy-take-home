@@ -7,12 +7,23 @@ const TicketDetails = ({ ticket, setTicketData, ticketData }:
     { ticket: Ticket | null, setTicketData: Dispatch<SetStateAction<Ticket[]>>, ticketData: Array<Ticket> }) => {
     const [ticketStatus, setTicketStatus] = useState<TicketStatus>(ticket ? ticket.status : 'new')
     const [page, setPage] = useState<"details" | "updateStatus" | "sendResponse">("details")
+    const [responseText, setResponseText] = useState<string>("")
 
     useEffect(() => {
         if (ticket) {
             setTicketStatus(ticket.status)
+            setPage('details')
         }
     }, [ticket])
+
+    const handleSendResponse = () => {
+        console.log('Would normally send email here with body: ' + responseText)
+        setResponseText('Message sent!')
+        setTimeout(() => {
+            setPage('details')
+            setResponseText("")
+        }, 2000)
+    }
 
     const handleSaveStatus = () => {
         fetch(process.env.NEXT_PUBLIC_APP_URL + 'api/tickets/' + ticket?.ticketId,
@@ -52,7 +63,8 @@ const TicketDetails = ({ ticket, setTicketData, ticketData }:
                             className="border-blue-200 border-[1px] w-[full] text-nowrap flex justify-center px-[10px] py-[5px] rounded mx-[10px] mb-[10px]">
                             Update Status
                         </button>
-                        <button className="bg-blue-200 w-[full] flex justify-center text-nowrap px-[10px] py-[5px] rounded mx-[10px]">Send Response</button>
+                        <button onClick={() => setPage('sendResponse')}
+                            className="bg-blue-200 w-[full] flex justify-center text-nowrap px-[10px] py-[5px] rounded mx-[10px]">Send Response</button>
                     </div>
                 )
                 break
@@ -87,6 +99,26 @@ const TicketDetails = ({ ticket, setTicketData, ticketData }:
                 )
                 break
             case "sendResponse":
+                componentContent = (
+                    <div className="flex w-full flex-col py-[20px]">
+                        <div className="w-full text-xl font-bold flex justify-center">
+                            Respond to {ticket.name}
+                        </div>
+                        <div className="w-full justify-center flex my-[10px]">
+                            <textarea value={responseText} placeholder="Enter response here"
+                                onChange={(e) => setResponseText(e.target.value)}
+                                className="w-[90%] p-[10px] h-[200px] overflow-scroll outline-none border-black border-[1px]" />
+                        </div>
+
+                        <button onClick={() => setPage('details')}
+                            className="border-blue-200 border-[1px] w-[full] text-nowrap flex justify-center px-[10px] py-[5px] rounded mx-[10px] mb-[10px]">
+                            Cancel
+                        </button>
+                        <button onClick={handleSendResponse}
+                            className="bg-blue-200 w-[full] flex justify-center text-nowrap px-[10px] py-[5px] rounded mx-[10px]">Send</button>
+                    </div>
+                )
+                break
         }
     }
 
