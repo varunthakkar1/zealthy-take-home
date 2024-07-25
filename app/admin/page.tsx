@@ -8,7 +8,7 @@ export default async function AdminPanel() {
     const data: Array<Ticket> = await response.json()
     return (
         <div className="w-full h-[100dvh] bg-white text-black">
-            <div className="w-full font-bold text-xl justify-center flex py-[10%]">Support Requests</div>
+            <div className="w-full font-bold text-xl justify-center flex py-[5%]">Support Requests</div>
             <TicketList tickets={data} />
         </div>
     )
